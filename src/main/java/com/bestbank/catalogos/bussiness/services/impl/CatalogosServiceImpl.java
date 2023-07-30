@@ -76,12 +76,12 @@ public class CatalogosServiceImpl implements CatalogosService{
           modItem.setValores(catalogo.getValores());
           modItem.setFechaModificacion(BankFnUtils.getLegacyDateTimeNow());
           return repoCatalogos.save(modItem)
-              .flatMap(itemUpd -> {
-                return hashOperations.remove(KEY, idCatalogo)
-                    .flatMap(cont -> { 
-                      return Mono.just(ModelMapperUtils.map(itemUpd, CatalogoRes.class));
-                    });
-              });
+              .flatMap(itemUpd -> 
+                 hashOperations.remove(KEY, idCatalogo)
+                    .flatMap(cont ->  
+                      Mono.just(ModelMapperUtils.map(itemUpd, CatalogoRes.class))
+                    )
+              );
         });
   }
 

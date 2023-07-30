@@ -1,7 +1,6 @@
 package com.bestbank.catalogos.bussiness.config;
 
 import com.bestbank.catalogos.bussiness.dto.res.CatalogoRes;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
@@ -19,8 +18,7 @@ public class RedisConfig {
     public ReactiveHashOperations<String, String, CatalogoRes> hashOperations(ReactiveRedisConnectionFactory redisConnectionFactory){
         var template = new ReactiveRedisTemplate<>(
           redisConnectionFactory,
-          //RedisSerializationContext.<String, CatalogoRes>newSerializationContext(new RedisSerializer())
-          RedisSerializationContext.<String, CatalogoRes>newSerializationContext(new StringRedisSerializer())
+             RedisSerializationContext.<String, CatalogoRes>newSerializationContext(new StringRedisSerializer())
                    .hashKey(new GenericToStringSerializer<>(String.class))
                    .hashValue(new Jackson2JsonRedisSerializer<>(CatalogoRes.class))
                    .build()

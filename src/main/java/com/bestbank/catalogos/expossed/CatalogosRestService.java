@@ -2,7 +2,9 @@ package com.bestbank.catalogos.expossed;
 
 import com.bestbank.catalogos.bussiness.dto.req.CatalogoReq;
 import com.bestbank.catalogos.bussiness.dto.res.CatalogoRes;
+import com.bestbank.catalogos.bussiness.services.CatalogosService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,20 +20,23 @@ import reactor.core.publisher.Mono;
 @Validated
 public class CatalogosRestService {
   
+  @Autowired
+  private CatalogosService servCatalogos;
+  
   @PostMapping("")
   public Mono<CatalogoRes> postCatalogo(@Valid @RequestBody CatalogoReq catalogo) {
-    return null;
+    return servCatalogos.postCatalogo(catalogo);
   }
   
   @GetMapping("/{id}")
   public Mono<CatalogoRes> getCatalogoById(@PathVariable(name = "id") String idCatalogo) {
-    return null;
+    return servCatalogos.getCatalogoById(idCatalogo);
   }
   
   @PutMapping("/{id}")
   public Mono<CatalogoRes> putCatalogoById(@PathVariable(name = "id") String idCatalogo, 
        @Valid @RequestBody CatalogoReq catalogo) {
-    return null;
+    return servCatalogos.getCatalogoById(idCatalogo);
   }
 
 }

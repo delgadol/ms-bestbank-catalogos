@@ -13,10 +13,9 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-@ConditionalOnProperty(name = "cache.enabled", havingValue = "true")
 public class RedisConfig {
 
-    @Bean
+    @Bean(name = "ReactiveHashOperationsCustom")
     public ReactiveHashOperations<String, Integer, CatalogoRes> hashOperations(ReactiveRedisConnectionFactory redisConnectionFactory){
         var template = new ReactiveRedisTemplate<>(
           redisConnectionFactory,

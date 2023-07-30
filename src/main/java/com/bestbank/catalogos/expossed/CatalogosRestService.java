@@ -36,7 +36,7 @@ public class CatalogosRestService {
   @PutMapping("/{id}")
   public Mono<CatalogoRes> putCatalogoById(@PathVariable(name = "id") String idCatalogo, 
        @Valid @RequestBody CatalogoReq catalogo) {
-    return servCatalogos.getCatalogoById(idCatalogo);
+    return servCatalogos.putCatalogo(idCatalogo, catalogo);
   }
 
 }

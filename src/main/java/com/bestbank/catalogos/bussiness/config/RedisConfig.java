@@ -16,7 +16,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
     @Bean(name = "ReactiveHashOperationsCustom")
-    public ReactiveHashOperations<String, Integer, CatalogoRes> hashOperations(ReactiveRedisConnectionFactory redisConnectionFactory){
+    public ReactiveHashOperations<String, String, CatalogoRes> hashOperations(ReactiveRedisConnectionFactory redisConnectionFactory){
         var template = new ReactiveRedisTemplate<>(
           redisConnectionFactory,
           //RedisSerializationContext.<String, CatalogoRes>newSerializationContext(new RedisSerializer())
